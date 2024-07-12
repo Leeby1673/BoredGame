@@ -7,3 +7,10 @@ def index(request):
         request,
         "post.html",
     )
+
+
+def newPost(request):
+    return render(
+        request,
+        "newPost",
+    )

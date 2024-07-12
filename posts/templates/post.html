@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block posts %}
+{% block post_styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/post.css' %}">
+{{ block.super }}
+{% endblock %}
+
+{% block content %}
 <div class="row">
     <!-- 側邊欄 -->
     <div class="col-md-4">
@@ -13,11 +19,43 @@
 
     <!-- 主內容 -->
     <div class="col-md-8">
-        <div class="card mb-4">
+        <div class="card mb-4 postarea">
             <div class="card-body">
-                <h5 class="card-title">文章標題 1</h5>
+                <div class="d-flex justify-content-between">
+                    <h5 class="card-title">文章標題 1</h5>
+
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle no-caret" type="button" data-bs-toggle="dropdown">
+                            ...
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a class="dropdown-item" href="#">編輯文章</a></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                    data-bs-target="#deletePost">刪除文章</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- <h5 class="card-title">文章標題 1</h5> -->
                 <p class="card-text">這是一篇示例文章的內容。你可以在這裡顯示更多文章。</p>
-                <a href="#" class="btn btn-primary">閱讀更多</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 確認刪除視窗 -->
+<div class="modal fade" id="deletePost" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deletePostLabel">確認刪除?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                此操作無法復原
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-danger">刪除</button>
             </div>
         </div>
     </div>
