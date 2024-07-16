@@ -12,5 +12,5 @@ def index(request):
 def newPost(request):
     return render(
         request,
-        "newPost",
+        "newpost.html",
     )

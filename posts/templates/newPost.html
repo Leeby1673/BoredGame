@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/newpost.css' %}">
+{{ block.super }}
+{% endblock %}sd
+
+{% block content %}
+<div class="row">
+    <form class="newpost-area" action="/submit_post" method="post">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="postTitle" name="title" placeholder="標題" required>
+            <label for="postTitle" class="form-label">標題</label>
+        </div>
+        <div class="mb-3">
+            <textarea class="form-control" id="postContent" name="content" rows="10" placeholder="內容"
+                required></textarea>
+        </div>
+        <div class="mb-3 form-check d-flex justify-content-end">
+            <button type="button" class="mx-2 btn btn-secondary">取消</button>
+            <button type="submit" class="btn btn-primary">發文</button>
+        </div>
+
+    </form>
+</div>
+{% endblock %}

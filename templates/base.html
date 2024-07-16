@@ -11,34 +11,39 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- 全域CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
-    <!-- post應用CSS -->
-    {% block post_styles %}{% endblock %}
+    <!-- 應用CSS -->
+    {% block styles %}{% endblock %}
 </head>
 
 <body>
-    <!-- 導覽列 -->
-    <div class="container">
-        <nav class="navbar bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand">Logo</a>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2 searchinput" type="search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+    <header>
+        <!-- 導覽列 -->
+        <div class="container">
+            <nav class="navbar bg-body-tertiary">
+                <div class="container-fluid">
+                    <a href="/posts" class="navbar-brand">Logo</a>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2 searchinput" type="search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
 
-                <div class="creatpost">
-                    <button class="btn btn-primary" type="button">新增文章</button>
+                    <div class="creatpost">
+                        <button type="button" class="btn btn-outline-dark"
+                            onclick="window.location.href='/posts/newpost'">新增文章</button>
+                    </div>
+
                 </div>
+            </nav>
+        </div>
+    </header>
 
-            </div>
-        </nav>
-    </div>
-
-    <!-- 主要頁面 -->
-    <div class="container mt-4 maincontent">
-        {% block content %}
-        {% endblock %}
-    </div>
+    <main>
+        <!-- 主要頁面 -->
+        <div class="container mt-4 maincontent">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
 
     <!-- bootstrap.js -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
