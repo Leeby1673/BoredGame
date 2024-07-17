@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
 
+<!-- 應用CSS -->
 {% block styles %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/newpost.css' %}">
 {{ block.super }}
-{% endblock %}sd
+{% endblock %}
 
 {% block content %}
 <div class="row">
-    <form class="newpost-area" action="/submit_post" method="post">
+    <form id="post-form" class="newpost-area" action="/submit_post" method="post">
         <div class="form-floating mb-3">
             <input type="text" class="form-control" id="postTitle" name="title" placeholder="標題" required>
             <label for="postTitle" class="form-label">標題</label>
@@ -24,4 +25,10 @@
 
     </form>
 </div>
+{% endblock %}
+
+<!-- 應用JS -->
+{% block scripts %}
+<script src="{% static 'js/newpost.js' %}"></script>
+{{ block.super }}
 {% endblock %}
