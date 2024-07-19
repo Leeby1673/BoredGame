@@ -1,7 +1,7 @@
 from django.db import models
 
 
-# 章文結構
+# 文章結構
 class Post(models.Model):
     id = models.AutoField(primary_key=True)  # 主鍵
     title = models.CharField(max_length=160)  # 標題
@@ -11,3 +11,9 @@ class Post(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+    # 紀錄時間調整為秒數整數
+    # def save(self, *args, **kwargs):
+    #     self.create_at = self.create_at.replace(microsecond=0)
+    #     self.update_at = self.update_at.replace(microsecond=0)
+    #     super().save(*args, **kwargs)

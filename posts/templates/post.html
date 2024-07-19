@@ -6,7 +6,7 @@
 {{ block.super }}
 {% endblock %}
 
-{% block content %}
+{% block main %}
 <div class="row">
     <!-- 側邊欄 -->
     <div class="col-md-4">
@@ -18,11 +18,13 @@
     </div>
 
     <!-- 主內容 -->
+    {% for post in posts %}
     <div class="col-md-8">
         <div class="card mb-4 postarea">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
-                    <h5 class="card-title">文章標題 1</h5>
+                    <!-- 文章標題 -->
+                    <h5 class="card-title">{{ post.title }}</h5>
 
                     <div class="dropdown">
                         <button class="btn dropdown-toggle no-caret" type="button" data-bs-toggle="dropdown">
@@ -35,11 +37,12 @@
                         </ul>
                     </div>
                 </div>
-                <!-- <h5 class="card-title">文章標題 1</h5> -->
-                <p class="card-text">這是一篇示例文章的內容。你可以在這裡顯示更多文章。</p>
+                <!-- 文章內容 -->
+                <p class="card-text">{{ post.content }}</p>
             </div>
         </div>
     </div>
+    {% endfor %}
 </div>
 
 <!-- 確認刪除視窗 -->

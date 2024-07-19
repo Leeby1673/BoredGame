@@ -25,8 +25,8 @@ function submitPost() {
         .then(response => response.json())
         // 處理後端返回的資料
         .then(data => {
-            console.log(data);
             if (data.message === 'new post successful') {
+                console.log(data.post_id)
                 window.location.href = '/posts'
             }
         })
