@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+<!-- 完整文章內容 -->
+<div class="col-md-9">
+    <div class="container">
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.content }}</p>
+    </div>
+</div>
+{% endblock %}

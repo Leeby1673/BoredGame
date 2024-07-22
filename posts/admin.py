@@ -8,6 +8,8 @@ class PostAdmin(admin.ModelAdmin):
         "id",
         "title",
         "content",
+        "create_at",
+        "update_at",
     )
 
 

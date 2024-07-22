@@ -12,7 +12,6 @@ class Post(models.Model):
     def __str__(self) -> str:
         return self.title
 
-    # 紀錄時間調整為秒數整數
     # def save(self, *args, **kwargs):
     #     self.create_at = self.create_at.replace(microsecond=0)
     #     self.update_at = self.update_at.replace(microsecond=0)

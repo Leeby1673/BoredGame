@@ -1,45 +1,36 @@
 {% extends 'base.html' %}
 {% load static %}
 
+<!-- 應用CSS -->
 {% block styles %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/post.css' %}">
 {{ block.super }}
 {% endblock %}
 
 {% block main %}
-<div class="row">
-    <!-- 側邊欄 -->
-    <div class="col-md-4">
-        <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action active">Post</a>
-            <a href="#" class="list-group-item list-group-item-action">News</a>
-            <a href="#" class="list-group-item list-group-item-action">Podcast</a>
-        </div>
-    </div>
-
-    <!-- 主內容 -->
+<!-- 主內容 -->
+<div class="col-md-9 post-container">
     {% for post in posts %}
-    <div class="col-md-8">
-        <div class="card mb-4 postarea">
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <!-- 文章標題 -->
-                    <h5 class="card-title">{{ post.title }}</h5>
+    <div class="card mb-4 postarea" data-post-id="{{ post.id }}">
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <!-- 文章標題 -->
+                <h5 class="card-title">{{ post.title }}</h5>
 
-                    <div class="dropdown">
-                        <button class="btn dropdown-toggle no-caret" type="button" data-bs-toggle="dropdown">
-                            ...
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a class="dropdown-item" href="#">編輯文章</a></li>
-                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                    data-bs-target="#deletePost">刪除文章</a></li>
-                        </ul>
-                    </div>
+                <!-- 文章操作 -->
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle no-caret" type="button" data-bs-toggle="dropdown">
+                        ...
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a class="dropdown-item" href="#">編輯文章</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                data-bs-target="#deletePost">刪除文章</a></li>
+                    </ul>
                 </div>
-                <!-- 文章內容 -->
-                <p class="card-text">{{ post.content }}</p>
             </div>
+            <!-- 文章內容 -->
+            <p class="card-text">{{ post.content }}</p>
         </div>
     </div>
     {% endfor %}
@@ -63,4 +54,10 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+<!-- 應用JS -->
+{% block scripts %}
+<script src="{% static 'js/post.js' %}"></script>
+{{ block.super }}
 {% endblock %}

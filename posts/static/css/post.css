@@ -1,8 +1,27 @@
+/* 每篇文章的美觀 */
 .card.mb-4.postarea {
     border: none;
     border-bottom: 1px solid #e0e0e0;
+    cursor: pointer;
 }
 
 .dropdown-toggle.no-caret::after {
     display: none;
+}
+
+/* 文章內容縮排 */
+.card-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ...按鈕特效 */
+.btn.dropdown-toggle.no-caret {
+    transition: 0.3s;
+}
+
+.btn.dropdown-toggle.no-caret:hover {
+    background-color: #212529;
+    color: #fff;
 }

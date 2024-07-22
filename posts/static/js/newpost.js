@@ -1,4 +1,5 @@
 console.log("js 連接成功");
+
 document.getElementById('post-form').addEventListener('submit', function (event) {
     event.preventDefault();
     submitPost();
