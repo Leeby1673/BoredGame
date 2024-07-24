@@ -11,8 +11,3 @@ class Post(models.Model):
 
     def __str__(self) -> str:
         return self.title
-
-    # def save(self, *args, **kwargs):
-    #     self.create_at = self.create_at.replace(microsecond=0)
-    #     self.update_at = self.update_at.replace(microsecond=0)
-    #     super().save(*args, **kwargs)

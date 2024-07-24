@@ -6,21 +6,21 @@ document.getElementById('post-form').addEventListener('submit', function (event)
 });
 
 function submitPost() {
-    // const title = document.getElementById('title').value;
-    // const content = document.getElementById('content').value;
     const form = document.getElementById('post-form');
     const formData = new FormData(form)
+    const csrftoken = getCookie('csrftoken');
 
     // 發送 POST 請求到後端服務器
     fetch('/posts/newpost', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken,
         },
-        body: JSON.stringify({
-            title: formData.get('title'),
-            content: formData.get('content'),
-        })
+        body: formData
+        // body: JSON.stringify({
+        //     title: formData.get('title'),
+        //     content: formData.get('content'),
+        // })
     })
         // 接收後端返回的響應
         .then(response => response.json())
@@ -35,4 +35,21 @@ function submitPost() {
             console.error('Error:', error);
             alert('發生錯誤, 抱歉我菜');
         });
+}
+
+// 取得 csrf cookie
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
 }
