@@ -25,3 +25,8 @@
     background-color: #212529;
     color: #fff;
 }
+
+/* 保留滾動條空間 */
+.container {
+    scrollbar-gutter: stable;
+}

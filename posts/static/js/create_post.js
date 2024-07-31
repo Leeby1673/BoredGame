@@ -8,19 +8,16 @@ document.getElementById('post-form').addEventListener('submit', function (event)
 function submitPost() {
     const form = document.getElementById('post-form');
     const formData = new FormData(form)
-    const csrftoken = getCookie('csrftoken');
+    let url = window.location.href;
+    const csrftoken = Cookies.get('csrftoken');
 
     // 發送 POST 請求到後端服務器
-    fetch('/posts/newpost', {
+    fetch(url, {
         method: 'POST',
         headers: {
             'X-CSRFToken': csrftoken,
         },
         body: formData
-        // body: JSON.stringify({
-        //     title: formData.get('title'),
-        //     content: formData.get('content'),
-        // })
     })
         // 接收後端返回的響應
         .then(response => response.json())
@@ -29,27 +26,12 @@ function submitPost() {
             if (data.message === 'new post successful') {
                 console.log(data.post_id)
                 window.location.href = '/posts'
-            }
+            } else if (data.message === 'update post successful')
+                console.log("更新成功 id:", data.post_id)
+            window.location.href = `/posts/${data.post_id}`
         })
         .catch(error => {
             console.error('Error:', error);
             alert('發生錯誤, 抱歉我菜');
         });
-}
-
-// 取得 csrf cookie
-function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
 }

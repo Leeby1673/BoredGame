@@ -22,14 +22,17 @@
             <nav class="navbar bg-body-tertiary">
                 <div class="container-fluid">
                     <a href="/posts" class="navbar-brand">Logo</a>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2 searchinput" type="search">
+
+                    <!-- 搜尋文章 -->
+                    <form class="search-post d-flex" role="search" action="{% url 'search_post' %}" method="get">
+                        <input class="form-control me-2 searchinput" type="search" name="query">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
 
+                    <!-- 新增文章按鍵 -->
                     <div class="creatpost">
                         <button type="button" class="btn btn-outline-dark"
-                            onclick="window.location.href='/posts/newpost'">新增文章</button>
+                            onclick="window.location.href='/posts/create-post'">新增文章</button>
                     </div>
 
                 </div>
@@ -44,13 +47,19 @@
                 <!-- 側邊欄 -->
                 <div class="col-md-3">
                     <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action active">Post</a>
-                        <a href="#" class="list-group-item list-group-item-action">News</a>
-                        <a href="#" class="list-group-item list-group-item-action">Podcast</a>
+                        <a href="{% url 'posts' %}"
+                            class="list-group-item list-group-item-action {% if request.path == '/posts/' %}active{% endif %}">Post</a>
+                        <a href="{% url 'wip1' %}"
+                            class="list-group-item list-group-item-action {% if request.path == '/posts/wip1' %}active{% endif %}">News</a>
+                        <a href="{% url 'wip2' %}"
+                            class="list-group-item list-group-item-action {% if request.path == '/posts/wip2' %}active{% endif %}">Podcast</a>
                     </div>
                 </div>
+
+                <!-- 主內容 -->
                 {% block main %}
                 {% endblock %}
+
             </div>
         </div>
     </main>
@@ -62,6 +71,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
+    <!-- js-cookie 第三方庫 -->
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <!-- 全域JS -->
+    <script src="{% static 'js/base.js' %}"></script>
     <!-- 應用JS -->
     {% block scripts %}{% endblock %}
 </body>

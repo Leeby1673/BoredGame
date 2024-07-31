@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_field %}
+
+<!-- 應用CSS -->
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/create_post.css' %}">
+{{ block.super }}
+{% endblock %}
+
+{% block main %}
+<div class="col-md-9">
+
+    <form id="post-form" class="newpost-area" action="{% url 'create_post' %}" method="post">
+        {% csrf_token %}
+        <div class="form-floating mb-3">
+            {% crispy_field form.title 'class' 'form-control' %}
+            <label for="{{ form.title.id_for_label }}" class="form-label">標題</label>
+        </div>
+
+        <div class="mb-3">
+            {% crispy_field form.content 'class' 'form-control' %}
+        </div>
+        <div class="mb-3 form-check d-flex justify-content-end">
+            <button type="button" class="mx-2 btn btn-secondary">取消</button>
+            <button type="submit" class="btn btn-primary">發文</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+<!-- 應用JS -->
+{% block scripts %}
+<script src="{% static 'js/create_post.js' %}"></script>
+{{ block.super }}
+{% endblock %}

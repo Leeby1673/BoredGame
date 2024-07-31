@@ -1,9 +1,10 @@
 from django import forms
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Div, Field, Submit
+from crispy_forms.layout import Layout, Div, Field
 from .models import Post
 
 
+# 表單格式
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
@@ -20,19 +21,18 @@ class PostForm(forms.ModelForm):
             ),
         }
 
-    # def __init__(self, *args, **kwargs):
-    #     super(PostForm, self).__init__(*args, **kwargs)
-    #     self.helper = FormHelper()
-    #     self.helper.layout = Layout(
-    #         Div(
-    #             Field("title", wrapper_class="form-floating"),
-    #             css_class="mb-3",
-    #             id="div_id_title",
-    #         ),
-    #         Div(
-    #             Field("content"),
-    #             css_class="mb-3",
-    #             id="div_id_content",
-    #         ),
-    #         Submit("submit", "Submit", css_class="btn btn-primary"),
-    #     )
+    def __init__(self, *args, **kwargs):
+        super(PostForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Div(
+                Field("title", wrapper_class="form-floating"),
+                css_class="mb-3",
+                id="div_id_title",
+            ),
+            Div(
+                Field("content"),
+                css_class="mb-3",
+                id="div_id_content",
+            ),
+        )

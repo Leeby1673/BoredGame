@@ -23,9 +23,10 @@
                         ...
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a class="dropdown-item" href="#">編輯文章</a></li>
+                        <!-- url 會帶入路由 -->
+                        <li><a class="dropdown-item" href="{% url 'update_post' post.id %}">編輯文章</a></li>
                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                data-bs-target="#deletePost">刪除文章</a></li>
+                                data-bs-target="#deletePost{{ post.id }}">刪除文章</a></li>
                     </ul>
                 </div>
             </div>
@@ -33,26 +34,29 @@
             <p class="card-text">{{ post.content }}</p>
         </div>
     </div>
-    {% endfor %}
-</div>
 
-<!-- 確認刪除視窗 -->
-<div class="modal fade" id="deletePost" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deletePostLabel">確認刪除?</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                此操作無法復原
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-danger">刪除</button>
+    <!-- 確認刪除視窗 -->
+    <div class="modal fade" id="deletePost{{ post.id }}" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deletePostLabel">確認刪除?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    此操作無法復原
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <!-- url 會帶入路由 -->
+                    <button type="button" class="btn btn-danger delete-button"
+                        data-delete-url="{% url 'delete_post' post.id %}">刪除</button>
+                </div>
             </div>
         </div>
     </div>
+    {% endfor %}
+
 </div>
 {% endblock %}
 
