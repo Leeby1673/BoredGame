@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "posts.apps.PostsConfig",
+    "users.apps.UsersConfig",
     "crispy_forms",
     "crispy_bootstrap5",
 ]
@@ -60,11 +61,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "boredgame.urls"
 
+# 加載模板
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
             os.path.join(BASE_DIR, "templates"),
+            os.path.join(BASE_DIR, "users", "template"),
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -134,10 +137,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+# 加載靜態文件
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     os.path.join(BASE_DIR, "posts", "static"),
+    os.path.join(BASE_DIR, "users", "static"),
 ]
 
 # Default primary key field type
