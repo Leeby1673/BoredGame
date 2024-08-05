@@ -34,7 +34,7 @@ def create_post(request):
             # 成功
             try:
                 form.save()
-                print("資料成功")
+                print("新增文章成功")
                 return JsonResponse({"message": "new post successful"})
             # 意料之外的錯誤：
             except Exception as e:
@@ -81,7 +81,7 @@ def update_post(request, pk):
         if form.is_valid():
             try:
                 form.save()
-                print("後端更新成功")
+                print("更新文章成功")
                 return JsonResponse(
                     {"message": "update post successful", "post_id": post.id},
                 )

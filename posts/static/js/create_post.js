@@ -24,11 +24,12 @@ function submitPost() {
         // 處理後端返回的資料
         .then(data => {
             if (data.message === 'new post successful') {
-                console.log(data.post_id)
-                window.location.href = '/posts'
-            } else if (data.message === 'update post successful')
-                console.log("更新成功 id:", data.post_id)
-            window.location.href = `/posts/${data.post_id}`
+                console.log("前端新增文章成功: ", data.post_id);
+                window.location.href = '/posts';
+            } else if (data.message === 'update post successful') {
+                console.log("更新成功 id:", data.post_id);
+                window.location.href = `/posts/${data.post_id}`;
+            };
         })
         .catch(error => {
             console.error('Error:', error);
