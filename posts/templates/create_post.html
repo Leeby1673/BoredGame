@@ -22,7 +22,8 @@
             {% crispy_field form.content 'class' 'form-control' %}
         </div>
         <div class="mb-3 form-check d-flex justify-content-end">
-            <button type="button" class="mx-2 btn btn-secondary">取消</button>
+            <button type="button" class="mx-2 btn btn-secondary"
+                onclick="window.location.href=`{% url 'posts' %}`">取消</button>
             <button type="submit" class="btn btn-primary">發文</button>
         </div>
     </form>

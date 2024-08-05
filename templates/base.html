@@ -21,7 +21,10 @@
         <div class="container">
             <nav class="navbar bg-body-tertiary">
                 <div class="container-fluid">
-                    <a href="/posts" class="navbar-brand">Logo</a>
+                    <!-- Logo -->
+                    <a href="{% url 'posts' %}" class="navbar-brand">
+                        <img class="logo-img" src="{% static 'img/BoredGame_logo_black.png' %}" alt="Logo">
+                    </a>
 
                     <!-- 搜尋文章 -->
                     <form class="search-post d-flex" role="search" action="{% url 'search_post' %}" method="get">
@@ -29,10 +32,23 @@
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
 
-                    <!-- 新增文章按鍵 -->
-                    <div class="creatpost">
+                    <!-- 新增文章/登入/登出按鍵 -->
+                    <div class="auth-buttons">
                         <button type="button" class="btn btn-outline-dark"
-                            onclick="window.location.href='/posts/create-post'">新增文章</button>
+                            onclick="window.location.href=`{% url 'create_post' %}`">
+                            新增文章
+                        </button>
+                        {% if request.user.is_authenticated %}
+                        <button type="button" class="btn btn-outline-dark"
+                            onclick="window.location.href=`{% url 'logout' %}`">
+                            登出
+                        </button>
+                        {% else %}
+                        <button type="button" class="btn btn-outline-dark"
+                            onclick="window.location.href=`{% url 'login' %}`">
+                            登入
+                        </button>
+                        {% endif %}
                     </div>
 
                 </div>

@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.db.models import Q
 from .models import Post
@@ -20,6 +21,7 @@ def index(request):
 
 
 # 新增文章
+@login_required
 @csrf_protect
 def create_post(request):
     # POST 請求

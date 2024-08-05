@@ -5,3 +5,13 @@
 .searchinput {
     width: 450px;
 }
+
+/* 導覽列 */
+.navbar.bg-body-tertiary {
+    padding: 0;
+}
+
+/* Logo圖片 */
+.logo-img {
+    height: 3rem;
+}
